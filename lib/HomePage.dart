@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:science_star/SearchPage.dart';
+import 'package:science_star/UserPage.dart';
 
 final avatar = Container(
   width: 25,
@@ -13,241 +14,42 @@ final avatar = Container(
   ),
 );
 
-final categoryCard1 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/8.jpeg', width: 70),
+Widget categoryCard(String imagePath, String label) {
+  return Column(
+    children: [
+      Card(
+        color: Colors.white,
+        elevation: 10,
+        margin: const EdgeInsets.all(10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Image.asset(imagePath, width: 70),
+        ),
       ),
-    ),
-    const Text('Category 1'),
-  ],
-);
+      Text(label),
+    ],
+  );
+}
 
-final categoryCard2 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/7.jpeg', width: 70),
+Widget BookCard(String imagePath, String label) {
+  return Column(
+    children: [
+      Card(
+        color: Colors.white,
+        elevation: 10,
+        margin: const EdgeInsets.all(10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(0),
+          child: Image.asset(imagePath, width: 100),
+        ),
       ),
-    ),
-    const Text('Category 2'),
-  ],
-);
-
-final categoryCard3 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/6.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 3'),
-  ],
-);
-
-final categoryCard4 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/4.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 4'),
-  ],
-);
-
-final categoryCard5 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/1.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 5'),
-  ],
-);
-
-final categoryCard6 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/3.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 6'),
-  ],
-);
-
-final categoryCard7 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/9.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 7'),
-  ],
-);
-
-final categoryCard8 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/5.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard9 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/13.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard10 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/12.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard11 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/15.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard12 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/16.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard13 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/11.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard14 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/10.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard15 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/14.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
-final categoryCard16 = Column(
-  children: [
-    Card(
-      color: Colors.white,
-      elevation: 10,
-      margin: const EdgeInsets.all(10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: Image.asset('assets/images/icon/2.jpeg', width: 70),
-      ),
-    ),
-    const Text('Category 8'),
-  ],
-);
+      Text(label),
+    ],
+  );
+}
 
 final favoriteIcon = const Icon(
   Icons.favorite_rounded,
-  fill: null,
   color: Color.fromARGB(255, 216, 61, 61),
   size: 35,
 );
@@ -271,151 +73,144 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    // Add other pages here as needed
     Center(
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20)),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
             child: Container(
               width: double.infinity,
-              height: 350,
+              height: 330,
               color: Color(0xFFDDF2FD),
             ),
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Spacer
-              const SizedBox(height: 38),
-              // Heading
+              SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  // Add SizedBox to separate logo and text
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Image.asset('assets/images/logo.png', width: 50),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Image.asset('assets/images/logo.png', width: 50),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'SCIENCE STAR',
+                    style: textStyle,
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: favoriteIcon,
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    categoryCard('assets/images/icon/8.jpeg', 'Category 1'),
+                    categoryCard('assets/images/icon/7.jpeg', 'Category 2'),
+                    categoryCard('assets/images/icon/6.jpeg', 'Category 3'),
+                    categoryCard('assets/images/icon/4.jpeg', 'Category 4'),
+                    categoryCard('assets/images/icon/9.jpeg', 'Category 5'),
+                    categoryCard('assets/images/icon/5.jpeg', 'Category 6'),
+                    categoryCard('assets/images/icon/3.jpeg', 'Category 7'),
+                    categoryCard('assets/images/icon/1.jpeg', 'Category 8'),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 9'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 10'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 11'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 12'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 13'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 14'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 15'),
+                    categoryCard('assets/images/icon/2.jpeg', 'Category 16'),
+                  ],
+                ),
+              ),
+              SizedBox(height: 35),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, bottom: 10),
+                    child: Text(
+                      'Buku yang Mungkin Anda Sukai',
+                      style: textStyle,
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'SCIENCE STAR',
-                      style: textStyle,
+                  Container(
+                    height: 200, // Sesuaikan dengan tinggi kartu buku
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        SizedBox(width: 10), // Padding awal
+                        BookCard('assets/images/buku/2.jpeg', 'Category A'),
+                        BookCard('assets/images/buku/1.jpeg', 'Category B'),
+                        BookCard('assets/images/buku/3.jpeg', 'Category C'),
+                        BookCard('assets/images/buku/4.jpeg', 'Category D'),
+                        SizedBox(width: 0), // Padding akhir
+                      ],
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 30,
-                ),
-              ),
-
-              SizedBox(
-                height: 120,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      categoryCard1,
-                      categoryCard2,
-                      categoryCard3,
-                      categoryCard4,
-                      categoryCard9,
-                      categoryCard10,
-                      categoryCard11,
-                      categoryCard12,
-
-                      // Repeat for the other 6 categories
-                    ],
+              SizedBox(height: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 0, left: 20, bottom: 20),
+                    child: Text(
+                      'Buku yang Mungkin Anda Sukai',
+                      style: textStyle,
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 30,
-                ),
-              ),
-              SizedBox(
-                height: 120,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      categoryCard5,
-                      categoryCard6,
-                      categoryCard7,
-                      categoryCard8,
-                      categoryCard13,
-                      categoryCard14,
-                      categoryCard15,
-                      categoryCard16,
-                    ],
+                  Container(
+                    height: 200, // Sesuaikan dengan tinggi kartu buku
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        SizedBox(width: 10), // Padding awal
+                        BookCard('assets/images/buku/2.jpeg', 'Category A'),
+                        BookCard('assets/images/buku/1.jpeg', 'Category B'),
+                        BookCard('assets/images/buku/3.jpeg', 'Category C'),
+                        BookCard('assets/images/buku/4.jpeg', 'Category D'),
+                        SizedBox(width: 10), // Padding akhir
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Wrap(
-              spacing: 10,
-              runSpacing: 30,
-            ),
-          ),
           Positioned(
-            top: 45,
-            right: 15,
-            child: favoriteIcon,
-          ),
-          Positioned(
+            top: 360,
             bottom: 0,
-            top: 370,
-            left: 15,
-            child: Text(
-              'Buku yang Mungkin Anda Sukai',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF164863),
-              ),
-            ),
+            left: 25,
+            right: 15,
+            child: Container(), // Placeholder for future content
           ),
-        ],
-      ),
-    ),
-
-    // const SearchPage(),
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Add avatar and text widgets here
-          avatar,
-          const SizedBox(height: 10),
-          Text(
-            'User',
-            style: textStyle,
+          Positioned(
+            top: 580,
+            bottom: 0,
+            left: 15,
+            right: 15,
+            child: Container(), // Placeholder for future content
           ),
         ],
       ),
@@ -425,15 +220,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: widget.backgroundColor,
-        child: _children[_currentIndex],
+      backgroundColor: Color(0xFF9BBEC8),
+      body: ListView(
+        children: [
+          _children[_currentIndex],
+        ],
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
@@ -444,13 +239,28 @@ class _HomePageState extends State<HomePage> {
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             if (index == 1) {
-              // Navigate to the search page when the search icon is tapped
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => SearchPage(
-                    backgroundColor: const Color(0xFF9BBEC8),
-                    textStyle: textStyle,
+                    backgroundColor: Color(0xFF9BBEC8),
+                    textStyle: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF164863)),
+                  ),
+                ),
+              );
+            } else if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserPage(
+                    backgroundColor: Color(0xFF9BBEC8),
+                    textStyle: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF164863)),
                   ),
                 ),
               );
@@ -461,11 +271,11 @@ class _HomePageState extends State<HomePage> {
             }
           },
           items: [
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: 'Search',
             ),

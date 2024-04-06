@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:science_star/HomePage.dart';
-import 'UserPage.dart';
+import 'package:science_star/SearchPage.dart';
 
 final avatar = Container(
   width: 25,
@@ -14,57 +14,43 @@ final avatar = Container(
   ),
 );
 
-class SearchPage extends StatefulWidget {
+class UserPage extends StatefulWidget {
   final Color backgroundColor;
   final TextStyle textStyle;
 
-  const SearchPage(
+  const UserPage(
       {Key? key, required this.backgroundColor, required this.textStyle})
       : super(key: key);
 
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _UserPageState createState() => _UserPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
-  int _currentIndex = 1;
+class _UserPageState extends State<UserPage> {
+  int _currentIndex = 2;
+  Color _backgroundColor = Color(0xFF9BBEC8);
 
-  final _searchController = TextEditingController();
+  void changeBackgroundColor(Color color) {
+    setState(() {
+      _backgroundColor = color;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: widget.backgroundColor,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Search for a scientist',
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
-              ),
-              // Add other widgets here
-            ],
-          ),
+          // Change the background color here
+          child: Column(),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
         onTap: (index) {
           if (index == 0) {
-            // Navigate to the home page when the home icon is tapped
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -72,13 +58,12 @@ class _SearchPageState extends State<SearchPage> {
                           backgroundColor: Color(0xFF9BBEC89BBEC8),
                           textStyle: widget.textStyle,
                         )));
-          } else if (index == 2) {
-            // Navigate to the user page when the avatar is tapped
+          } else if (index == 1) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => UserPage(
-                  backgroundColor: Color(0xFF9BBEC89BBEC8),
+                builder: (context) => SearchPage(
+                  backgroundColor: const Color(0xFF9BBEC8),
                   textStyle: TextStyle(),
                 ),
               ),
