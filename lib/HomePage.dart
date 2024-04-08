@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:science_star/SearchPage.dart';
 import 'package:science_star/UserPage.dart';
+import 'FavoriteBookPage.dart';
 
 final avatar = Container(
   width: 25,
@@ -76,38 +77,19 @@ class _HomePageState extends State<HomePage> {
     Center(
       child: Stack(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-            child: Container(
-              width: double.infinity,
-              height: 330,
-              color: Color(0xFFDDF2FD),
+          Container(
+            width: double.infinity,
+            height: 260,
+            decoration: BoxDecoration(
+              color: Color(0xFF9BBEC8),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
             ),
           ),
           Column(
             children: [
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Image.asset('assets/images/logo.png', width: 50),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    'SCIENCE STAR',
-                    style: textStyle,
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: favoriteIcon,
-                  ),
-                ],
-              ),
               SizedBox(height: 10),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -129,14 +111,14 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 9'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 10'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 11'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 12'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 13'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 14'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 15'),
-                    categoryCard('assets/images/icon/2.jpeg', 'Category 16'),
+                    categoryCard('assets/images/icon/13.jpeg', 'Category 9'),
+                    categoryCard('assets/images/icon/10.jpeg', 'Category 10'),
+                    categoryCard('assets/images/icon/11.jpeg', 'Category 11'),
+                    categoryCard('assets/images/icon/12.jpeg', 'Category 12'),
+                    categoryCard('assets/images/icon/16.jpeg', 'Category 13'),
+                    categoryCard('assets/images/icon/14.jpeg', 'Category 14'),
+                    categoryCard('assets/images/icon/15.jpeg', 'Category 15'),
+                    categoryCard('assets/images/icon/17.jpeg', 'Category 16'),
                   ],
                 ),
               ),
@@ -146,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 20, left: 20, bottom: 10),
+                        const EdgeInsets.only(top: 10, left: 20, bottom: 10),
                     child: Text(
                       'Buku yang Mungkin Anda Sukai',
                       style: textStyle,
@@ -162,6 +144,8 @@ class _HomePageState extends State<HomePage> {
                         BookCard('assets/images/buku/1.jpeg', 'Category B'),
                         BookCard('assets/images/buku/3.jpeg', 'Category C'),
                         BookCard('assets/images/buku/4.jpeg', 'Category D'),
+                        BookCard('assets/images/buku/5.jpeg', 'Category E'),
+                        BookCard('assets/images/buku/6.jpeg', 'Category F'),
                         SizedBox(width: 0), // Padding akhir
                       ],
                     ),
@@ -176,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                     padding:
                         const EdgeInsets.only(top: 0, left: 20, bottom: 20),
                     child: Text(
-                      'Buku yang Mungkin Anda Sukai',
+                      'Buku Terpoluler',
                       style: textStyle,
                     ),
                   ),
@@ -190,6 +174,9 @@ class _HomePageState extends State<HomePage> {
                         BookCard('assets/images/buku/1.jpeg', 'Category B'),
                         BookCard('assets/images/buku/3.jpeg', 'Category C'),
                         BookCard('assets/images/buku/4.jpeg', 'Category D'),
+                        BookCard('assets/images/buku/5.jpeg', 'Category E'),
+                        BookCard('assets/images/buku/6.jpeg', 'Category F'),
+
                         SizedBox(width: 10), // Padding akhir
                       ],
                     ),
@@ -197,20 +184,6 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ],
-          ),
-          Positioned(
-            top: 360,
-            bottom: 0,
-            left: 25,
-            right: 15,
-            child: Container(), // Placeholder for future content
-          ),
-          Positioned(
-            top: 580,
-            bottom: 0,
-            left: 15,
-            right: 15,
-            child: Container(), // Placeholder for future content
           ),
         ],
       ),
@@ -220,18 +193,56 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF9BBEC8),
-      body: ListView(
-        children: [
-          _children[_currentIndex],
+      backgroundColor: Color(0xFFDDF2FD),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: widget.backgroundColor,
+        elevation: 0, // No shadow
+        title: Row(
+          children: [
+            Image.asset('assets/images/logo.png', width: 50),
+            SizedBox(width: 10),
+            Text(
+              'SCIENCE STAR',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF164863),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoriteBookPage(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: favoriteIcon,
+            ),
+          ),
+        ],
+      ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                // Your existing widgets here
+                _children[_currentIndex],
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
           color: widget.backgroundColor,
         ),
         child: BottomNavigationBar(
@@ -284,6 +295,23 @@ class _HomePageState extends State<HomePage> {
               label: 'User',
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class FavoriteBookPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Favorite Books'),
+      ),
+      body: Center(
+        child: Text(
+          'Your favorite books will be displayed here.',
+          style: TextStyle(fontSize: 18),
         ),
       ),
     );

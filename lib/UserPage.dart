@@ -55,7 +55,7 @@ class _UserPageState extends State<UserPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => HomePage(
-                          backgroundColor: Color(0xFF9BBEC89BBEC8),
+                          backgroundColor: Color(0xFF9BBEC8),
                           textStyle: widget.textStyle,
                         )));
           } else if (index == 1) {

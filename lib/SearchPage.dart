@@ -69,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => HomePage(
-                          backgroundColor: Color(0xFF9BBEC89BBEC8),
+                          backgroundColor: Color(0xFF9BBEC8),
                           textStyle: widget.textStyle,
                         )));
           } else if (index == 2) {
