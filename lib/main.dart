@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
           context,
           MaterialPageRoute(
               builder: (context) => HomePage(
-                  backgroundColor: Color(0xFF9BBEC8), textStyle: textStyle)));
+                  backgroundColor: Color(0xFF9BBEC8), textStyle: TextStyle())));
     });
   }
 

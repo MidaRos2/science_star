@@ -15,33 +15,58 @@ final avatar = Container(
   ),
 );
 
-Widget categoryCard(String imagePath, String label) {
-  return Column(
-    children: [
-      Card(
-        color: Colors.white,
-        elevation: 10,
-        margin: const EdgeInsets.all(10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: Image.asset(imagePath, width: 70),
+Widget categoryCard(String imagePath, String label, VoidCallback onTap) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Column(
+      children: [
+        Card(
+          color: Colors.white,
+          elevation: 10,
+          margin: const EdgeInsets.all(10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.asset(imagePath, width: 70),
+          ),
         ),
-      ),
-      Text(label),
-    ],
+        Text(label),
+      ],
+    ),
   );
 }
 
-Widget BookCard(String imagePath, String label) {
+Widget BookCard(
+    String imagePath, String label, VoidCallback onFavoritePressed) {
+  bool isBookFavorite =
+      false; // Penanda apakah buku sudah difavoritkan, bisa diganti dengan logika yang sesuai
+
   return Column(
     children: [
       Card(
         color: Colors.white,
         elevation: 10,
         margin: const EdgeInsets.all(10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(0),
-          child: Image.asset(imagePath, width: 100),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(0),
+              child: Image.asset(imagePath, width: 120),
+            ),
+            Positioned(
+              top: 0,
+              right: 75,
+              child: IconButton(
+                icon: isBookFavorite
+                    ? favoriteIcon
+                    : Icon(Icons
+                        .favorite_border), // Gunakan ikon favorit jika buku sudah difavoritkan
+                color: Colors.red,
+                iconSize: 30, // Ganti warna sesuai kebutuhan
+                onPressed:
+                    onFavoritePressed, // Panggil fungsi ketika ikon favorit diklik
+              ),
+            ),
+          ],
         ),
       ),
       Text(label),
@@ -73,121 +98,179 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = [
-    Center(
-      child: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 260,
-            decoration: BoxDecoration(
-              color: Color(0xFF9BBEC8),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-          ),
-          Column(
+  final List<Widget Function(BuildContext)> _children = [
+    (context) => Center(
+          child: Stack(
             children: [
-              SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    categoryCard('assets/images/icon/8.jpeg', 'Category 1'),
-                    categoryCard('assets/images/icon/7.jpeg', 'Category 2'),
-                    categoryCard('assets/images/icon/6.jpeg', 'Category 3'),
-                    categoryCard('assets/images/icon/4.jpeg', 'Category 4'),
-                    categoryCard('assets/images/icon/9.jpeg', 'Category 5'),
-                    categoryCard('assets/images/icon/5.jpeg', 'Category 6'),
-                    categoryCard('assets/images/icon/3.jpeg', 'Category 7'),
-                    categoryCard('assets/images/icon/1.jpeg', 'Category 8'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    categoryCard('assets/images/icon/13.jpeg', 'Category 9'),
-                    categoryCard('assets/images/icon/10.jpeg', 'Category 10'),
-                    categoryCard('assets/images/icon/11.jpeg', 'Category 11'),
-                    categoryCard('assets/images/icon/12.jpeg', 'Category 12'),
-                    categoryCard('assets/images/icon/16.jpeg', 'Category 13'),
-                    categoryCard('assets/images/icon/14.jpeg', 'Category 14'),
-                    categoryCard('assets/images/icon/15.jpeg', 'Category 15'),
-                    categoryCard('assets/images/icon/17.jpeg', 'Category 16'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 35),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, bottom: 10),
-                    child: Text(
-                      'Buku yang Mungkin Anda Sukai',
-                      style: textStyle,
-                    ),
+              Container(
+                width: double.infinity,
+                height: 260,
+                decoration: BoxDecoration(
+                  color: Color(0xFF9BBEC8),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
                   ),
-                  Container(
-                    height: 200, // Sesuaikan dengan tinggi kartu buku
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
+                ),
+              ),
+              Column(
+                children: [
+                  SizedBox(height: 10),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
                       children: [
-                        SizedBox(width: 10), // Padding awal
-                        BookCard('assets/images/buku/2.jpeg', 'Category A'),
-                        BookCard('assets/images/buku/1.jpeg', 'Category B'),
-                        BookCard('assets/images/buku/3.jpeg', 'Category C'),
-                        BookCard('assets/images/buku/4.jpeg', 'Category D'),
-                        BookCard('assets/images/buku/5.jpeg', 'Category E'),
-                        BookCard('assets/images/buku/6.jpeg', 'Category F'),
-                        SizedBox(width: 0), // Padding akhir
+                        categoryCard('assets/images/icon/8.jpeg', 'Category 1',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard(
+                            'assets/images/icon/7.jpeg', 'Category 2', () {}),
+                        categoryCard(
+                            'assets/images/icon/6.jpeg', 'Category 3', () {}),
+                        categoryCard(
+                            'assets/images/icon/4.jpeg', 'Category 4', () {}),
+                        categoryCard(
+                            'assets/images/icon/9.jpeg', 'Category 5', () {}),
+                        categoryCard(
+                            'assets/images/icon/5.jpeg', 'Category 6', () {}),
+                        categoryCard(
+                            'assets/images/icon/3.jpeg', 'Category 7', () {}),
+                        categoryCard(
+                            'assets/images/icon/1.jpeg', 'Category 8', () {}),
                       ],
                     ),
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 0, left: 20, bottom: 20),
-                    child: Text(
-                      'Buku Terpoluler',
-                      style: textStyle,
-                    ),
-                  ),
-                  Container(
-                    height: 200, // Sesuaikan dengan tinggi kartu buku
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
+                  SizedBox(height: 10),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
                       children: [
-                        SizedBox(width: 10), // Padding awal
-                        BookCard('assets/images/buku/2.jpeg', 'Category A'),
-                        BookCard('assets/images/buku/1.jpeg', 'Category B'),
-                        BookCard('assets/images/buku/3.jpeg', 'Category C'),
-                        BookCard('assets/images/buku/4.jpeg', 'Category D'),
-                        BookCard('assets/images/buku/5.jpeg', 'Category E'),
-                        BookCard('assets/images/buku/6.jpeg', 'Category F'),
-
-                        SizedBox(width: 10), // Padding akhir
+                        categoryCard(
+                            'assets/images/icon/13.jpeg', 'Category 9', () {}),
+                        categoryCard(
+                            'assets/images/icon/10.jpeg', 'Category 10', () {}),
+                        categoryCard(
+                            'assets/images/icon/11.jpeg', 'Category 11', () {}),
+                        categoryCard(
+                            'assets/images/icon/12.jpeg', 'Category 12', () {}),
+                        categoryCard(
+                            'assets/images/icon/16.jpeg', 'Category 13', () {}),
+                        categoryCard(
+                            'assets/images/icon/14.jpeg', 'Category 14', () {}),
+                        categoryCard(
+                            'assets/images/icon/15.jpeg', 'Category 15', () {}),
+                        categoryCard(
+                            'assets/images/icon/17.jpeg', 'Category 16', () {}),
                       ],
                     ),
+                  ),
+                  SizedBox(height: 35),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, bottom: 0),
+                        child: Text(
+                          'Buku yang Mungkin Anda Sukai',
+                          style: textStyle,
+                        ),
+                      ),
+                      Container(
+                        height: 220, // Sesuaikan dengan tinggi kartu buku
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(width: 10), // Padding awal
+                            BookCard('assets/images/buku/2.jpeg', 'Category A',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/1.jpeg', 'Category B',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/3.jpeg', 'Category C',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/4.jpeg', 'Category D',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/5.jpeg', 'Category E',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/6.jpeg', 'Category F',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            SizedBox(width: 0), // Padding akhir
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, bottom: 0),
+                        child: Text(
+                          'Buku Terpopuler',
+                          style: textStyle,
+                        ),
+                      ),
+                      Container(
+                        height: 220, // Sesuaikan dengan tinggi kartu buku
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(width: 10), // Padding awal
+                            BookCard('assets/images/buku/2.jpeg', 'Category A',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/1.jpeg', 'Category B',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/3.jpeg', 'Category C',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/4.jpeg', 'Category D',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/5.jpeg', 'Category E',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            BookCard('assets/images/buku/6.jpeg', 'Category F',
+                                () {
+                              // Implementasi logika ketika ikon favorit pada buku ini diklik
+                            }),
+                            SizedBox(width: 10), // Padding akhir
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
-        ],
-      ),
-    ),
+        )
   ];
 
   @override
@@ -234,8 +317,8 @@ class _HomePageState extends State<HomePage> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                // Your existing widgets here
-                _children[_currentIndex],
+                // Panggil fungsi yang mengembalikan widget dengan menyediakan context
+                _children[_currentIndex](context),
               ],
             ),
           ),
@@ -301,18 +384,15 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class FavoriteBookPage extends StatelessWidget {
+class Category1Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorite Books'),
+        title: Text('Category 1'),
       ),
       body: Center(
-        child: Text(
-          'Your favorite books will be displayed here.',
-          style: TextStyle(fontSize: 18),
-        ),
+        child: Text('Category 1 Page'),
       ),
     );
   }

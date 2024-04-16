@@ -166,7 +166,7 @@ class SignUpPage extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) => HomePage(
                                         backgroundColor: Color(0xFF9BBEC8),
-                                        textStyle: textStyle),
+                                        textStyle: TextStyle()),
                                   ));
                               if (_formKey.currentState!.validate()) {
                                 // Proses pendaftaran
