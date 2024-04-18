@@ -3,6 +3,9 @@ import 'package:science_star/SearchPage.dart';
 import 'package:science_star/UserPage.dart';
 import 'FavoriteBookPage.dart';
 import 'Category1Page.dart';
+import 'Category2Page.dart';
+import 'Category3Page.dart';
+import 'Category4Page.dart';
 
 final avatar = Container(
   width: 25,
@@ -168,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Category1Page(),
+                              builder: (context) => Category2Page(),
                             ),
                           );
                         }),
@@ -177,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Category1Page(),
+                              builder: (context) => Category3Page(),
                             ),
                           );
                         }),
@@ -186,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Category1Page(),
+                              builder: (context) => Category4Page(),
                             ),
                           );
                         }),
@@ -518,11 +521,8 @@ class _HomePageState extends State<HomePage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => UserPage(
-                    backgroundColor: Color(0xFF9BBEC8),
-                    textStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF164863)),
+                    backgroundColor: Color(0xFFDDF2FD),
+                    textStyle: TextStyle(),
                   ),
                 ),
               );

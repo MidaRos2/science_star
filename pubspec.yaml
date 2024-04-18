@@ -62,6 +62,7 @@ flutter:
     - assets/images/icon/
     - assets/images/buku/
     - assets/images/icon2/
+    - assets/images/user/
     #   - images# ...
   # family: Lora
   #     fonts:

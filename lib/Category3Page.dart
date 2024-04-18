@@ -6,7 +6,7 @@ import 'package:science_star/SignUpPage.dart';
 import 'LoginPage.dart';
 import 'SignUpPage.dart';
 
-class Category1Page extends StatelessWidget {
+class Category3Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class Category1Page extends StatelessWidget {
         title: Row(
           children: [
             Text(
-              'Category 1',
+              'Category 3',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -183,8 +183,8 @@ class _CardBookState extends State<CardBook> {
             children: [
               Image.asset(
                 widget.imagePath,
-                width: 150,
-                height: 150,
+                width: 200,
+                height: 200,
               ),
               SizedBox(width: 0),
               Expanded(

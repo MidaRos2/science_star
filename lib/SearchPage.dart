@@ -78,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
               context,
               MaterialPageRoute(
                 builder: (context) => UserPage(
-                  backgroundColor: Color(0xFF9BBEC89BBEC8),
+                  backgroundColor: Color(0xFFDDF2FD),
                   textStyle: TextStyle(),
                 ),
               ),
