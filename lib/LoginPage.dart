@@ -99,8 +99,9 @@ class LoginPage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage(
-                                    backgroundColor: Color(0xFF9BBEC8),
-                                    textStyle: TextStyle())));
+                                      backgroundColor: Color(0xFF9BBEC8),
+                                      textStyle: TextStyle(),
+                                    )));
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(255, 21, 50, 99),

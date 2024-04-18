@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:science_star/SearchPage.dart';
 import 'package:science_star/UserPage.dart';
 import 'FavoriteBookPage.dart';
+import 'Category1Page.dart';
 
 final avatar = Container(
   width: 25,
@@ -20,13 +21,15 @@ Widget categoryCard(String imagePath, String label, VoidCallback onTap) {
     onTap: onTap,
     child: Column(
       children: [
-        Card(
-          color: Colors.white,
-          elevation: 10,
-          margin: const EdgeInsets.all(10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image.asset(imagePath, width: 70),
+            // borderRadius: BorderRadius.circular(100),
+            child: Image.asset(
+              imagePath,
+              width: 90,
+              height: 90,
+            ),
           ),
         ),
         Text(label),
@@ -35,43 +38,72 @@ Widget categoryCard(String imagePath, String label, VoidCallback onTap) {
   );
 }
 
-Widget BookCard(
-    String imagePath, String label, VoidCallback onFavoritePressed) {
-  bool isBookFavorite =
-      false; // Penanda apakah buku sudah difavoritkan, bisa diganti dengan logika yang sesuai
+class Book {
+  final String imagePath;
+  final String label;
 
-  return Column(
-    children: [
-      Card(
-        color: Colors.white,
-        elevation: 10,
-        margin: const EdgeInsets.all(10),
-        child: Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(0),
-              child: Image.asset(imagePath, width: 120),
-            ),
-            Positioned(
-              top: 0,
-              right: 75,
-              child: IconButton(
-                icon: isBookFavorite
-                    ? favoriteIcon
-                    : Icon(Icons
-                        .favorite_border), // Gunakan ikon favorit jika buku sudah difavoritkan
-                color: Colors.red,
-                iconSize: 30, // Ganti warna sesuai kebutuhan
-                onPressed:
-                    onFavoritePressed, // Panggil fungsi ketika ikon favorit diklik
+  Book({required this.imagePath, required this.label});
+}
+
+class BookCard extends StatefulWidget {
+  final String imagePath;
+  final String label;
+  final VoidCallback onFavoritePressed;
+
+  const BookCard({
+    required this.imagePath,
+    required this.label,
+    required this.onFavoritePressed,
+  });
+
+  @override
+  _BookCardState createState() => _BookCardState();
+}
+
+class _BookCardState extends State<BookCard> {
+  bool isBookFavorite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Card(
+          color: Colors.white,
+          elevation: 10,
+          margin: const EdgeInsets.all(10),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(0),
+                child: Image.asset(
+                  widget.imagePath,
+                  width: 120,
+                ),
               ),
-            ),
-          ],
+              Positioned(
+                top: 0,
+                right: 75,
+                child: IconButton(
+                  icon: isBookFavorite
+                      ? favoriteIcon
+                      : Icon(Icons.favorite_border),
+                  color: Colors.red,
+                  iconSize: 30,
+                  onPressed: () {
+                    setState(() {
+                      isBookFavorite = !isBookFavorite;
+                    });
+                    widget.onFavoritePressed();
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-      Text(label),
-    ],
-  );
+        Text(widget.label),
+      ],
+    );
+  }
 }
 
 final favoriteIcon = const Icon(
@@ -97,6 +129,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  // ignore: unused_field
+  final List<String> _favoriteBookIds = [];
 
   final List<Widget Function(BuildContext)> _children = [
     (context) => Center(
@@ -120,7 +154,61 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        categoryCard('assets/images/icon/8.jpeg', 'Category 1',
+                        categoryCard('assets/images/icon/8.png', 'Category 1',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/7.png', 'Category 2',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/6.png', 'Category 3',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/4.png', 'Category 4',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/9.png', 'Category 5',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/5.png', 'Category 6',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/3.png', 'Category 7',
                             () {
                           Navigator.push(
                             context,
@@ -130,19 +218,7 @@ class _HomePageState extends State<HomePage> {
                           );
                         }),
                         categoryCard(
-                            'assets/images/icon/7.jpeg', 'Category 2', () {}),
-                        categoryCard(
-                            'assets/images/icon/6.jpeg', 'Category 3', () {}),
-                        categoryCard(
-                            'assets/images/icon/4.jpeg', 'Category 4', () {}),
-                        categoryCard(
-                            'assets/images/icon/9.jpeg', 'Category 5', () {}),
-                        categoryCard(
-                            'assets/images/icon/5.jpeg', 'Category 6', () {}),
-                        categoryCard(
-                            'assets/images/icon/3.jpeg', 'Category 7', () {}),
-                        categoryCard(
-                            'assets/images/icon/1.jpeg', 'Category 8', () {}),
+                            'assets/images/icon/1.png', 'Category 8', () {}),
                       ],
                     ),
                   ),
@@ -151,22 +227,78 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        categoryCard(
-                            'assets/images/icon/13.jpeg', 'Category 9', () {}),
-                        categoryCard(
-                            'assets/images/icon/10.jpeg', 'Category 10', () {}),
-                        categoryCard(
-                            'assets/images/icon/11.jpeg', 'Category 11', () {}),
-                        categoryCard(
-                            'assets/images/icon/12.jpeg', 'Category 12', () {}),
-                        categoryCard(
-                            'assets/images/icon/16.jpeg', 'Category 13', () {}),
-                        categoryCard(
-                            'assets/images/icon/14.jpeg', 'Category 14', () {}),
-                        categoryCard(
-                            'assets/images/icon/15.jpeg', 'Category 15', () {}),
-                        categoryCard(
-                            'assets/images/icon/17.jpeg', 'Category 16', () {}),
+                        categoryCard('assets/images/icon/13.png', 'Category 9',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/10.png', 'Category 10',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/11.png', 'Category 11',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/12.png', 'Category 12',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/16.png', 'Category 13',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/14.png', 'Category 14',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/15.png', 'Category 15',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
+                        categoryCard('assets/images/icon/17.png', 'Category 16',
+                            () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Category1Page(),
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -188,30 +320,48 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             SizedBox(width: 10), // Padding awal
-                            BookCard('assets/images/buku/2.jpeg', 'Category A',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/1.jpeg', 'Category B',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/3.jpeg', 'Category C',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/4.jpeg', 'Category D',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/5.jpeg', 'Category E',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/6.jpeg', 'Category F',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
+                            BookCard(
+                              imagePath: 'assets/images/buku/2.jpeg',
+                              label: 'Category A',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/1.jpeg',
+                              label: 'Category B',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/3.jpeg',
+                              label: 'Category C',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/4.jpeg',
+                              label: 'Category D',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/5.jpeg',
+                              label: 'Category E',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/6.jpeg',
+                              label: 'Category F',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
                             SizedBox(width: 0), // Padding akhir
                           ],
                         ),
@@ -236,30 +386,48 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             SizedBox(width: 10), // Padding awal
-                            BookCard('assets/images/buku/2.jpeg', 'Category A',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/1.jpeg', 'Category B',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/3.jpeg', 'Category C',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/4.jpeg', 'Category D',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/5.jpeg', 'Category E',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
-                            BookCard('assets/images/buku/6.jpeg', 'Category F',
-                                () {
-                              // Implementasi logika ketika ikon favorit pada buku ini diklik
-                            }),
+                            BookCard(
+                              imagePath: 'assets/images/buku/2.jpeg',
+                              label: 'Category A',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/1.jpeg',
+                              label: 'Category B',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/3.jpeg',
+                              label: 'Category C',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/4.jpeg',
+                              label: 'Category D',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/5.jpeg',
+                              label: 'Category E',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
+                            BookCard(
+                              imagePath: 'assets/images/buku/6.jpeg',
+                              label: 'Category F',
+                              onFavoritePressed: () {
+                                // Implementasi logika ketika ikon favorit pada buku ini diklik
+                              },
+                            ),
                             SizedBox(width: 10), // Padding akhir
                           ],
                         ),
@@ -379,20 +547,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class Category1Page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Category 1'),
-      ),
-      body: Center(
-        child: Text('Category 1 Page'),
       ),
     );
   }
