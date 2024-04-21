@@ -450,7 +450,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(0xFFDDF2FD),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: widget.backgroundColor,
+        backgroundColor: Color(0xFF9BBEC8),
         elevation: 0, // No shadow
         title: Row(
           children: [

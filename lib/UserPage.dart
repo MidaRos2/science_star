@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:science_star/FavoriteBookPage.dart';
 import 'package:science_star/SearchPage.dart';
 import 'package:science_star/HomePage.dart';
+import 'package:science_star/EditProfilePage.dart'; // Pastikan import halaman EditProfilePage
 
 final avatar = Container(
   width: 25,
@@ -36,6 +37,8 @@ class _UserPageState extends State<UserPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Tambahkan crossAxisAlignment
           children: [
             SizedBox(height: 20), // Spacer
             Container(
@@ -51,11 +54,74 @@ class _UserPageState extends State<UserPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 100,
-                    backgroundImage: AssetImage('Assets/images/user/mida.jpg'),
-                  )
+                  Container(
+                    width: 220, // Ubah lebar sesuai kebutuhan
+                    height: 220, // Ubah tinggi sesuai kebutuhan
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Color(0xFF164863), width: 3),
+                    ),
+                    child: CircleAvatar(
+                      radius: 100,
+                      backgroundColor: Colors.blue,
+                      backgroundImage: AssetImage('assets/images/mida.jpg'),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Rosmida',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF164863),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ), // Tambahkan jarak antara teks "Rosmida" dan "Edit Profile"
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfilePage(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Color(0xFF164863),
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        SizedBox(width: 2),
+                        Icon(
+                          Icons.edit,
+                          color: Color(0xFF164863),
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 20.0), // Tambahkan padding ke teks
+              child: Text(
+                'Buku Yang Sedang Di Pinjam',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF164863),
+                  fontSize: 20,
+                ),
               ),
             ),
           ],
