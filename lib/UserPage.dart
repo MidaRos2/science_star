@@ -55,8 +55,8 @@ class _UserPageState extends State<UserPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 220, // Ubah lebar sesuai kebutuhan
-                    height: 220, // Ubah tinggi sesuai kebutuhan
+                    width: 200, // Ubah lebar sesuai kebutuhan
+                    height: 200, // Ubah tinggi sesuai kebutuhan
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(color: Color(0xFF164863), width: 3),
