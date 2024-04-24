@@ -40,13 +40,13 @@ class EditProfilePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Text(
-                //   'Edit Photo Profile',
-                //   style: TextStyle(
-                //     fontSize: 15,
-                //     color: Colors.black,
-                //   ),
-                // ),
+                Text(
+                  'Edit Photo Profile',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
+                ),
                 IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
