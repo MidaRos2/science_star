@@ -19,8 +19,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _genderController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _genderController.dispose();
+    _addressController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +81,11 @@ class SignUpPage extends StatelessWidget {
                     ),
                     SizedBox(height: 40),
                     Form(
-                      key: _formKey,
+                      key: widget._formKey,
                       child: Column(
                         children: [
                           TextFormField(
+                            controller: _usernameController,
                             decoration: InputDecoration(
                               labelText: 'Create Username',
                               labelStyle: TextStyle(
@@ -73,7 +95,6 @@ class SignUpPage extends StatelessWidget {
                               filled: true,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
-                                // padding: EdgeInsets.fromLTRB(16, 24, 24, 16),
                               ),
                             ),
                             validator: (value) {
@@ -87,6 +108,30 @@ class SignUpPage extends StatelessWidget {
                             height: 30,
                           ),
                           TextFormField(
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 21, 50, 99),
+                              ),
+                              fillColor: Color.fromARGB(255, 170, 205, 215),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextFormField(
+                            controller: _passwordController,
                             decoration: InputDecoration(
                               labelText: 'Create Password',
                               labelStyle: TextStyle(
@@ -140,6 +185,7 @@ class SignUpPage extends StatelessWidget {
                             height: 30,
                           ),
                           TextFormField(
+                            controller: _addressController,
                             decoration: InputDecoration(
                               labelText: 'Address',
                               labelStyle: TextStyle(
@@ -161,21 +207,25 @@ class SignUpPage extends StatelessWidget {
                           SizedBox(height: 30),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              if (widget._formKey.currentState!.validate()) {
+                                // Proses pendaftaran
+                                // Misalnya, menyimpan data pengguna atau mengirimnya ke server
+
+                                // Setelah proses pendaftaran selesai, pindah ke halaman beranda
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => HomePage(
-                                      backgroundColor: Color(0xFF9BBEC8),
+                                      backgroundColor: Color((0xFF9BBEC8)),
                                       textStyle: TextStyle(),
                                     ),
-                                  ));
-                              if (_formKey.currentState!.validate()) {
-                                // Proses pendaftaran
+                                  ),
+                                );
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromARGB(255, 21, 50, 99),
-                              onPrimary: Colors.white,
+                              foregroundColor: Colors.white,
+                              backgroundColor: Color.fromARGB(255, 21, 50, 99),
                               minimumSize: Size(200, 50),
                               textStyle: TextStyle(
                                 fontSize: 16,
@@ -193,7 +243,8 @@ class SignUpPage extends StatelessWidget {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginPage()),
+                                    builder: (context) => LoginPage(),
+                                  ),
                                 );
                               },
                               child: RichText(
